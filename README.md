@@ -22,7 +22,7 @@ for year in range(1880,2011):
 names=pd.concat(pieces, ignore_index=True)
 names
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture.JPG)
+![image](images/Capture.JPG)
 
 #### Since we have tracked the number of births by year (births= Sum of children with each name), we can show this data by gender.
 
@@ -30,7 +30,7 @@ names
 total_births= names.pivot_table("births", index="year", columns="sex", aggfunc=sum)
 total_births.plot(title="Total births by sex and year")
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture2.JPG)
+![image](images/Capture2.JPG)
 
 ## Female Naming Trends?
 
@@ -46,7 +46,7 @@ def add_prop(group):
 names=names.groupby(["year","sex"]).apply(add_prop)
 names
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture3.JPG)
+![image](images/Capture3.JPG)
 
 #### With the proportion of every name we can study which are the names used throughout the time by gender. So, we are getting 1000 more chosen names.
 
@@ -64,7 +64,7 @@ top1000= top1000.reset_index(drop=True)
 ```python
 girls= top1000[top1000["sex"] == "F"]
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture4.JPG)
+![image](images/Capture4.JPG)
 
 ## A few boy and girl names over time
 
@@ -80,7 +80,7 @@ subset.plot(subplots=True, figsize=(12,10), title="Number of births per year")
 
 ### Visualizing the data
 
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture5.JPG)
+![image](images/Capture5.JPG)
 
 ## Proportion of births represented in top one thousand names by sex
 
@@ -92,7 +92,7 @@ subset.plot(subplots=True, figsize=(12,10), title="Number of births per year")
 table= top1000.pivot_table("prop", index="year",columns="sex", aggfunc=sum)
 table.plot(title="Sum of table1000.prop by year and sex", yticks=np.linspace(0, 1.2,13))
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture6.JPG)
+![image](images/Capture6.JPG)
 
 #### We can get to know as well the amount of names that compose the 50% of the names by year and sex.
 
@@ -105,13 +105,13 @@ diversity=top1000.groupby(["year", "sex"]).apply(get_quantile_count)
 diversity=diversity.unstack()
 diversity
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture7.JPG)
+![image](images/Capture7.JPG)
 
 ```python
 diversity.plot(title="Number of popular names in top 50%")
 ```
 ### Visualizing the data
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture8.JPG)
+![image](images/Capture8.JPG)
 
 ## Last letter changes througout the time
 
@@ -134,7 +134,7 @@ subtable.sum().unstack("year")
 letter_prop= subtable/subtable.sum()
 letter_prop
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture9.JPG)
+![image](images/Capture9.JPG)
 
 ### Visualizing the data
 
@@ -145,14 +145,14 @@ fig,axes=plt.subplots(2,1,figsize=(10,8))
 letter_prop["M"].plot(kind="bar", rot=0, ax=axes[0], title="Male", legend=True)
 letter_prop["F"].plot(kind="bar", rot=0, ax=axes[1], title="Female", legend=False)
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture10.JPG)
+![image](images/Capture10.JPG)
 
 ```python
 letter_prop=table/table.sum()
 dny_ts=letter_prop.loc[["d","n","y"],"M"].T
 dny_ts.plot()
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture11.JPG)
+![image](images/Capture11.JPG)
 
 ## Name's breakdown by sex over time
 
@@ -166,12 +166,12 @@ lesley_like= all_names[all_names.str.contains("Lesl")]
 filtered=top1000[top1000["name"].isin(lesley_like)]
 filtered.groupby("name")["births"].sum()
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture12.JPG)
+![image](images/Capture12.JPG)
 
 ```python
 filtered
 ```
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture13.JPG)
+![image](images/Capture13.JPG)
 
 ```python
 table= filtered.pivot_table("births", index="year", columns="sex", aggfunc="sum")
@@ -182,7 +182,7 @@ table=table.div(table.sum(axis="columns"), axis="index")
 
 #### Plot of the breakdown by sex over time
 
-![image](https://github.com/EduardoJMR/US-Baby-Names-1880-2010-project/blob/master/images/Capture14.JPG)
+![image](images/Capture14.JPG)
 
 
 
